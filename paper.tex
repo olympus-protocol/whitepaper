@@ -1,0 +1,223 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[letterpaper, total={6in, 8in}]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\usepackage{csquotes}
+\usepackage{biblatex}
+\addbibresource{references.bib}
+\usepackage{hyperref}
+\hypersetup{
+  	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+\setlength{\parindent}{0cm}
+\title{Olympus Protocol}
+\author{Enrique Berrueta Zapata}
+\date{23 January 2020}
+
+\begin{document}
+
+	\maketitle
+	\begin{abstract}
+		The cryptocurrency sector is continuously evolving, new consensus mechanisms, algorithms, and cryptographic proofs have appeared in the blockchain development sector. Olympus introduces a unique consensus system that focuses on making the network scalable, secure, and user-friendly without losing the usability of a decentralized system. The protocol introduces a new organized consensus mechanism based on collateralized nodes named THEMIS, a modularized transaction system based on dynamic payloads using bilinear pairing systems for cryptographic proofs and capabilities for tokenization.
+	\end{abstract}
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	\newpage
+	
+	\section{Introduction}
+
+	\subsection{Bitcoin}
+	
+	\subsection{Ethereum}
+	
+	\subsection{Altcoins}
+	
+	\section{Background}
+
+	\subsection{Blockchain}
+	
+	Blockchain is a ``global append-only log" \cite[p.4]{bitcoin-mining-is-vulnerable} maintained by a group of clients that together add records into the system.
+	
+	These records -often called transactions- are a chain of digital signatures that modify the information \cite[p.2]{bitcoin-whitepaper}. These modifications can be tracked backward, which means it can be verifiable from the beginning until the last modification.
+	
+	The blockchain system's main advantage is the ability to record information immutable and distributed between multiple peers.
+	
+	Usually, blockchain systems are entirely decentralized, which means there is no central authority controlling which information updates or rejects. 
+	
+	Since each peer that participates in the distributed system needs to verify the information by itself, there must be a set of rules to guarantee the validity of the information. The consensus algorithm defines these rules.
+	
+	\subsection{Byzantine Fault}		
+	
+	The Byzantine Fault refers to a condition on the system (particularly on distributed systems) on which a part of the system can cause catastrophic issues by providing wrong information among the peers or system parts.  The term Byzantine was used due to similarity of the problem that generals faced when trying to coordinate an attack using only messages. \cite{byzantine-general-problem}
+	
+	\subsection{Double-spending}		
+		
+	The double-spending issue refers to a problem in digital cash on which coins can be spent twice at the same time. 
+				
+	\subsection{Replicated State Machines}	
+	
+	\subsection{Consensus}	
+	
+	\section{Olympus consensus}
+	
+	The Olympus consensus algoroithm is based on a deterministic and organized list of collateralized nodes. This ensures all peers agree on the state modifications.
+	
+	\subsection{Defining \textit{THEMIS}}	
+
+	\textit{	``Themis is an ancient Greek Titaness. She is described as "The Lady of good counsel," and is the personification of divine order, fairness, law, natural law, and custom."}
+	
+	A consensus algorithm must make sure all peers agree on who is the peer that modifies or add the information into the database, while Bitcoin-like systems use proof of a computation problem solution, the THEMIS algorithm uses a list of peers (named as workers) deterministically organized.
+	
+	To make sure the blockchain modifications are properly organized based on time, the consensus algorithm has a set of rules to make sure each worker broadcasts the block into the network at its turn and on time.
+	
+	To make the network decentralized, anybody can take part in the consensus algorithm. The only requirements to submit a worker into the worker list are: to prove the possession of a collateralized set of coins and keep it unspent and a static IP on which the network can reach the worker.
+	
+	Once a new worker is created into the network, peers agree to put it at the bottom of the worker list. This way, each worker moves on the list until their turn is reached and goes to the bottom when it creates and broadcasts the block successfully.
+	
+	The collateral required by the network is not at a fixed amount; anybody can collateralize any amount between 10 and 1000 coins.
+	
+	To make sure users are willing to spend time and effort to make sure the workers are available for the network, the blockchain incentivizes them by giving them newly generated coins based on the proportionality of their collateral.
+		
+	\subsection{Non-difficulty based consensus system}
+	
+	One of the main advantages of THEMIS consensus algorithm is that it doesn't require any computing power to make the blocks. While Bitcoin and other coins systems require to meet specific hash proof based on a deterministic calculated difficulty, on the Olympus protocol, the order of the blocks is merely organizational.
+	
+	This implementation has critical advantages for scalability. While a Bitcoin node must compute all block hashes until it reaches the latest block to make sure the Proof-of-Work is achieved on all of them, which costs time and power, the THEMIS algorithm checks the worker data and compare it against their index of the assigned worker and its signature. 
+	
+	This advantage is going to make it easier for the Olympus protocol node to sync from scratch with the entire network, and to make it faster to broadcast information between the peers.
+	
+	\subsection{Inmutability}
+	
+	Another essential concern about Proof-of-Work and Proof-of-Stake consensus algorithms is that those are models that require competence between the peers. For that reason, to make sure the transaction broadcasted to the network to be perpetually modified requires sure "confirmations" or blocks ahead of it. 
+	
+	This behavior is caused because of chain-reorganizations, based on the principle that the best chain is always the longest, this means that if two peers broadcast at the same time block the chain splits and the peers follow the largest, this can cause modifications on a previously approved state. This chain-reorganizations can cause significant problems in distributed systems. One example is the 51\% attack.
+	
+	Since the Olympus consensus system doesn't work based on competence, chain-reorganizations are entirely unnecessary, and data confirmation can be guarantee since the first inclusion into the blockchain. 
+	
+	\subsection{Scalability}				
+	
+	The entire discussion around cryptocurrencies has been for a long time how to achieve real system scalability across time and transactions per second. 
+	
+	The scalability of the Olympus protocol relies entirely on the cryptographic proofs based on bilinear pairing, which makes the entire network capable of sync faster.
+											
+	\section{Bilinear pairing cryptography}	
+	
+	The bilinear pairing cryptographic schemes refer to a group of cryptographic proofs that are paired with each other together to a third group, which together creates a cryptographic system.
+		
+	\subsection{Boneh–Lynn–Shacham signature scheme}	
+	
+	The Bone-Lynn-Shacham (BLS) signature scheme is a cryptographic proof that verifies the authentication of signatures. This scheme uses bilinear pairing cryptography with elements of an elliptic curve group.
+	
+	This signature scheme is quite convenient for blockchains systems, and the entire Olympus protocol relies on the capabilities of this scheme.
+	
+	Some of the basic properties are:
+	
+		\begin{enumerate}
+		\item The signature threshold for multi-signature transactions.
+		\item Signature aggregation on which multiple signatures from multiple public keys and multiple messages can be aggregated into a single signature.
+		\item Deterministic signatures on which the signature from a public key and a message is unique.
+		\end{enumerate}
+	
+	It is not the purpose of this paper to explain the fundamentals of the Bone-Lynn-Shacham signature scheme, only the appliance of it for the Olympus protocol. For more information about this particular cryptographic proofs you can find more information...
+	
+	\subsection{Signature aggregation}		
+	
+	The entire scalable capabilities for the Olympus protocol relies on two principles of the BLS signature scheme, the signature aggregation, and the deterministic signature creation.
+	
+	The THEMIS consensus mechanism requires each worker to create the block and create a signature with their public key and block hash as a message. Also, each transaction contains a set of signatures for coins transfers. With the aggregation, verification times can really speed up, which makes the synchronization of nodes faster and easier and reduces the possibilities of a fault on the communication between peers.
+	
+	The verifications on blockchain modifications are done in three moments: 
+	
+		\begin{enumerate}
+		\item The initial blockchain synchronization.
+		
+		During an initial blockchain synchronization, the node that enters the network is assumed not to contain any data besides the genesis block.
+		
+		The node should connect to multiple peers using the same version handshake created by the Bitcoin peer-to-peer communication structure.
+		
+		Once a node has achieved the handshake with multiple nodes, it asks the last block and hash and starts requesting blocks from their peers to reach the latest.
+		
+		The nodes start sending block packages to the syncing node; those packages contain a set of blocks with an aggregated signature. The receiving node aggregates all block signatures into a single and verifies the signature match.  Once the signature matches, the node aggregates all public keys of the expected workers creating the blocks and verifies the blocks contain the same aggregated public key. Once both proof pass, the node checks the check the aggregated signature with the aggregated public key and uses all block hashes to verify the validity of the blocks.
+		
+		Once the blocks are proven to be created by the assigned worker, the node starts performing a transaction verification. This verification is done extracting all transactions from the blocks and verifying each transaction with their verification scheme. Since each transaction type and action are different, all transactions have their own rules for aggregating signatures and public keys.
+		
+		\item The new block broadcast.
+		
+		The block verification is similar to the initial blockchain synchronization.
+		
+		Once a new block is broadcasted into the network, each peer aggregates all signatures and public keys from the block transactions and verify a single signature.
+		
+		\item The transaction broadcast.
+		
+		Once a new transaction is broadcasted into the network, the node verifies the signature base on their own verifications scheme.
+		
+		\end{enumerate}
+															
+	\section{Modular transactions}	
+	
+	One of the primary purposes of the Olympus protocol is flexibility. With a modular transaction system, any project can submit a new payload with its signing and verification methods to modify indexes of all nodes (or just unique nodes modes). In this paper, there is the only explanation of the main indexes of the Olympus nodes: the unspent outputs index and the block's index.
+	
+	Each transaction is created to modify information in one index state of the Olympus node. Those indexes are created to maintain a record of the last state of the network. 
+	
+	Olympus indexes are also flexible; any user or project can assign a new index to a particular node mode or simply use all indexes. On launch, the current indexes are blocks, users, workers, governance, and unspent outputs.
+	
+	All transactions are created by choosing an index to modify and an action that wants to perform on that particular index. This property makes it possible to perform any modifications into any index as long as it has the verifications and signatures required to proof capabilities of that particular modification.
+	
+	\subsection{Unspent Output State}
+	
+	Coin transactions are tracked using the index of the unspent output. This is inherited by the Bitcoin indexing state.
+	
+	Each time new coins are generated, they are assigned to a public key that can modify the ownership of those coins by creating a signed message into the network that proofs ownership of the public key.
+	
+	Furthermore, the newly assigned owners can transfer those coins too. 
+	
+	A new coin transaction feature implemented on the Olympus protocol is the Pay-to-the-network scheme. Once a user uses a service from the entire network, instead of burning a certain amount of coins, the coins are stored into the utxo index as network fees. Those fees are distributed each time a profit block is generated. That block distributes the coins to all the workers based on their collateral.
+	
+	\subsection{Dynamic States}		
+	
+	Each index has its own verifications and signatures, but the whole point is to observe the blockchain as a big distributed database that can hold any information. 
+	
+	Each index can perform addition, revokes, transfers, or update information over that particular data. In this way, all the modifications can be verified along time.
+	
+	\section{Coin-agnostic chain for code-based assets }
+	
+	Since the launch of cryptocurrencies in the world, many platforms running Smart Contracts have launched. But the main difference of the Olympus protocol with them is the origin of those tokenizations.
+	
+	While users can create a Smart Contract and create a token into the Ethereum network, for the Olympus protocol, those tokens are generated, modifying the code base and activated using soft-forks and nodes consensus. This feature gives the blockchain the ability to democratize the creation of new use cases.
+	
+	Those tokens are differentiated into the network by its properties configured on the codebase. 
+	
+	\subsection{Native token}
+	
+	The native token of the Olympus protocol is named Polis (POLIS). This token is used to pay the transaction fees, and the nodes collateralized with these tokens have more power over the consensus decisions. 
+	
+	This paper pretends to explain the technical usage of the Olympus protocol. For more information about the native token distribution, governance, vision, distribution, or migration, you can find it here: /TODO link.
+	
+	\subsection{Consensus capable tokens}	
+	
+	Another disadvantage of Smart Contract platforms that have tokenization capabilities is the inability of those tokens into participating in the consensus mechanism.
+	
+	On Olympus, all the tokens may decide whether or not they can participate and reward collateralized nodes as the same as the native token into the consensus system, although they must meet harder validations, and there is also the possibility of token removals based on democratic desitions.
+		
+	\section{Considerations for launch}
+	
+	There is one last important about the launch of the Olympus protocol that needs to take into account for forks or tokens launch that uses the THEMIS consensus algorithm.
+	
+	Since the algorithms rely entirely on the worker list and the workers need coins to be added into the list, then the launch of a network using THEMIS algorithm is completely centralized since there must be a hardcoded private key to create the first blocks until the network tokens are distributed.
+	
+	But to solve centralization on the main network launch, the Olympus takes a snapshot on a particular block of the old Polis network and distribute those coins for the users to redeem them. That way, no rewards are generated before the entire network can take part in the consensus mechanism.
+
+	
+	\printbibliography
+	
+\end{document}

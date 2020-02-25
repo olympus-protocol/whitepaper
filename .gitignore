@@ -1,0 +1,37 @@
+# MacOs
+.DS_Store
+
+# IDEA
+.idea
+
+# Production
+release/
+*.aux
+*.log
+*.pdf
+*.synctex.gz
+*.lof
+*.toc
+*.lot
+*.out
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.run.*
+
+lang/*.aux
+lang/*.log
+lang/*.pdf
+lang/*.synctex.gz
+lang/*.lof
+lang/*.toc
+lang/*.lot
+lang/*.out
+lang/*.bbl
+lang/*.bcf
+lang/*.blg
+lang/*.dvi
+lang/*.run.*
+
+
