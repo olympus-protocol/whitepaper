@@ -11,7 +11,7 @@ To read the whitepaper you can find the latest version on:
 
 ## Building
 
-To build from the source, you will need to have a LaTeX compiler for your OS. 
+To build from the source, you will need to have a LaTeX compiler for your OS.
 
 Please read further on: `https://www.latex-project.org/get/`
 
